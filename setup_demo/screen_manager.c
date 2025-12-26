@@ -52,6 +52,17 @@ void ScreenManager_focusNext(ScreenManager* manager) {
    manager->focus = (manager->focus + 1) % manager->count;
 }
 
+void ScreenManager_focusPrev(ScreenManager* manager) {
+   if (!manager || manager->count == 0) {
+      return;
+   }
+   if (manager->focus == 0) {
+      manager->focus = manager->count - 1;
+   } else {
+      manager->focus--;
+   }
+}
+
 void ScreenManager_draw(ScreenManager* manager, bool force) {
    if (!manager) {
       return;

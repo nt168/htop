@@ -93,7 +93,7 @@ int main(void) {
 
    while (running) {
       ScreenManager_draw(manager, false);
-      FunctionBar_draw(LINES - 1, COLS, "Tab: Switch  \u2191/\u2193: Move  q: Quit");
+      FunctionBar_draw(LINES - 1, COLS, "Tab/\u2190/\u2192: Switch  \u2191/\u2193: Move  q: Quit");
       refresh();
 
       int ch = getch();
@@ -103,8 +103,13 @@ int main(void) {
          running = false;
          break;
       }
-      if (ch == '\t') {
+      if (ch == '\t' || ch == KEY_RIGHT) {
          ScreenManager_focusNext(manager);
+         ScreenManager_draw(manager, true);
+         continue;
+      }
+      if (ch == KEY_LEFT) {
+         ScreenManager_focusPrev(manager);
          ScreenManager_draw(manager, true);
          continue;
       }

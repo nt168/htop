@@ -1,6 +1,9 @@
 #include "crt.h"
 
+#include <locale.h>
+
 void CRT_init(void) {
+   setlocale(LC_ALL, "");
    initscr();
    cbreak();
    noecho();

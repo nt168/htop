@@ -6,6 +6,7 @@
 #include "function_bar.h"
 #include "panel.h"
 #include "screen_manager.h"
+#include "config.h"
 
 typedef struct {
    const char* name;
@@ -40,9 +41,9 @@ static const ItemDefinition ddr_items[] = {
 };
 
 static const CategoryDefinition categories[] = {
-   {"计算性能", compute_items, sizeof(compute_items) / sizeof(compute_items[0])},
-   {"pcie性能", pcie_items, sizeof(pcie_items) / sizeof(pcie_items[0])},
-   {"ddr性能", ddr_items, sizeof(ddr_items) / sizeof(ddr_items[0])},
+   {"计算处理分析", compute_items, sizeof(compute_items) / sizeof(compute_items[0])},
+   {"pcie接口性能", pcie_items, sizeof(pcie_items) / sizeof(pcie_items[0])},
+   {"ddr接口性能", ddr_items, sizeof(ddr_items) / sizeof(ddr_items[0])},
 };
 
 static void populate_items(Panel* panel, const CategoryDefinition* category) {
@@ -61,7 +62,11 @@ static void populate_details(Panel* panel, const ItemDefinition* item) {
    Panel_setSelected(panel, 0);
 }
 
-int main(void) {
+int main(void) 
+{
+
+   // printf("%s\n", topdown);
+   // return 0;
    CRT_init();
 
    int height = LINES - 2;
@@ -71,7 +76,7 @@ int main(void) {
    int mid_w = 16;
    int right_w = width - left_w - mid_w - 2;
 
-   Panel* left = Panel_new(0, 0, left_w, height, "Setup");
+   Panel* left = Panel_new(0, 0, left_w, height, "列表");
    Panel* middle = Panel_new(left_w + 1, 0, mid_w, height, "Options");
    Panel* right = Panel_new(left_w + mid_w + 2, 0, right_w, height, "Details");
 

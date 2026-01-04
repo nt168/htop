@@ -153,7 +153,7 @@ void Panel_draw(Panel* panel, bool force) {
       return;
    }
 
-   int header_attr = panel->has_focus ? COLOR_PAIR(COLOR_HEADER_FOCUS)
+   int header_attr = panel->has_focus ? (COLOR_PAIR(COLOR_HEADER_FOCUS) | A_BOLD)
                                       : COLOR_PAIR(COLOR_HEADER_UNFOCUS);
    int selection_attr = panel->has_focus ? COLOR_PAIR(COLOR_SELECTION_FOCUS)
                                          : COLOR_PAIR(COLOR_SELECTION_UNFOCUS);
@@ -161,7 +161,7 @@ void Panel_draw(Panel* panel, bool force) {
    attrset(header_attr);
    mvhline(panel->y, panel->x, ' ', panel->w);
    if (panel->header) {
-      mvaddnstr(panel->y, panel->x + 1, panel->header, panel->w - 2);
+      CRT_drawString(panel->y, panel->x + 1, panel->w - 2, panel->header);
    }
 
    int list_y = panel->y + 1;
@@ -169,6 +169,7 @@ void Panel_draw(Panel* panel, bool force) {
    size_t size = Vector_size(panel->items);
    for (int row = 0; row < visible; row++) {
       int idx = panel->scroll + row;
+      attrset(A_NORMAL);
       mvhline(list_y + row, panel->x, ' ', panel->w);
       if (idx >= (int)size) {
          continue;
@@ -183,7 +184,7 @@ void Panel_draw(Panel* panel, bool force) {
       } else {
          attrset(A_NORMAL);
       }
-      mvaddnstr(list_y + row, panel->x + 1, item->text, panel->w - 2);
+      CRT_drawString(list_y + row, panel->x + 1, panel->w - 2, item->text);
    }
 
    attrset(A_NORMAL);

@@ -12,5 +12,6 @@ typedef enum {
 
 void CRT_init(void);
 void CRT_shutdown(void);
+void CRT_drawString(int y, int x, int width, const char* text);
 
 #endif

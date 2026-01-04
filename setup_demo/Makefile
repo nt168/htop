@@ -6,6 +6,7 @@ LDLIBS ?= -lncursesw
 BIN = setup_demo
 SRC = \
 	main.c \
+	config.c \
 	panel.c \
 	screen_manager.c \
 	vector.c \

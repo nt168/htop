@@ -18,6 +18,7 @@ void ScreenManager_add(ScreenManager* manager, Panel* panel);
 Panel* ScreenManager_getFocused(const ScreenManager* manager);
 void ScreenManager_focusNext(ScreenManager* manager);
 void ScreenManager_focusPrev(ScreenManager* manager);
+void ScreenManager_ensureFocusVisible(ScreenManager* manager);
 void ScreenManager_draw(ScreenManager* manager, bool force);
 
 #endif

@@ -149,7 +149,7 @@ bool Panel_handleKey(Panel* panel, int key) {
 }
 
 void Panel_draw(Panel* panel, bool force) {
-   if (!panel || (!panel->needs_redraw && !force)) {
+   if (!panel || panel->w <= 0 || panel->h <= 0 || (!panel->needs_redraw && !force)) {
       return;
    }
 

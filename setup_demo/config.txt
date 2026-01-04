@@ -1,8 +1,8 @@
-计算处理分析
---------------------------------------------------------------------------------------------------------------
-	TopDown	
+处理器分析
+---------------------------------------------------------------------------------------------------------------------------------
 	功能	子项	执行参数
-		Stage1	
+	TopDown
+		Stage1
 			[目标程序] ________
 
 			[ ] 间隔模式
@@ -10,9 +10,9 @@
 			[运行时长] ________
 
 			[ ] frontend_stall_pct
-				Branch_Effectiveness	ITLB_Effectiveness	L1l_Cache_Effectiveness	L2_cache_Effectiveness
-	
-		Stage2	
+				Branch_Effectiveness	ITLB_Effectiveness	L1I_Cache_Effectiveness	L2_cache_Effectiveness
+
+		Stage2
 			[目标程序] ________
 
 			[ ] 间隔模式
@@ -20,26 +20,38 @@
 			[运行时长] ________
 
 			[ ] frontend_stall_pct
-				Branch_Effectiveness	ITLB_Effectiveness	L1l_Cache_Effectiveness	L2_cache_Effectiveness
+				Branch_Effectiveness	ITLB_Effectiveness	L1I_Cache_Effectiveness	L2_cache_Effectiveness
 
-			[ ] backend_stall_pct 
+			[ ] backend_stall_pct
 				DTLB_Effectiveness	L1D_Cache_Effectiveness	L2_Cache_Effectiveness	Operation_Mix
-	
+
 			[ ] retired_pct
 				Operation_Mix
 
 			[ ] bad_speculation_pct
 				Branch_Effectiveness
------------------------------------------------------------------------------------------------------------------
-	pcie
+------------------------------------------------------------------------------------------------------------------------------------
 	功能	执行参数
+	计算处理分析
 		[目标程序] ________
-	
-		[PCIE设备] ________
 
 		[CPU ID]   ________
-		
+
 		[重复次数] ________
-	
-		[检测时长] ________	
-----------------------------------------------------------------------------------------------------------------
+
+		[检测时长] ________
+
+		[x] 目标部件
+			ALL	TOP	Branch	TLB	Cache	Insts
+环境喜喜分
+------------------------------------------------------------------------------------------------------------------------------------
+	功能	子项	执行参数
+	cpu使用率
+		系统设置
+			[目标程序] ________
+
+			[程序参数] ________
+
+			[ ] 记录模式
+
+			[ ] 实时模式

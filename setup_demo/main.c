@@ -44,6 +44,23 @@ static void populate_details(Panel* panel, const Vector* details) {
    Panel_setSelected(panel, 0);
 }
 
+static void draw_panel_separators(Panel* const* panels, size_t count) {
+   if (!panels) {
+      return;
+   }
+   for (size_t i = 0; i < count; i++) {
+      Panel* panel = panels[i];
+      if (!panel || panel->w <= 0 || panel->h <= 0) {
+         continue;
+      }
+      if (panel->x <= 0) {
+         continue;
+      }
+      attrset(A_NORMAL);
+      mvvline(panel->y, panel->x - 1, ' ', panel->h);
+   }
+}
+
 int main(void) 
 {
    const char* config_path = "config.txt";
@@ -111,6 +128,8 @@ int main(void)
 
    while (running) {
       ScreenManager_draw(manager, false);
+      Panel* panels[] = { left, middle, subitems, right };
+      draw_panel_separators(panels, sizeof(panels) / sizeof(panels[0]));
       FunctionBar_draw(LINES - 1, COLS, "Tab/\u2190/\u2192: Switch  \u2191/\u2193: Move  q: Quit");
       refresh();
 
